@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"D:/Cours/Master/S3/Synthese d image 3D/OpenGL/build/cmake_install.cmake",
+		"D:/Cours/Master/S3/Synthese d image 3D/OpenGL/build/_deps/glm-build/cmake_install.cmake",
+		"D:/Cours/Master/S3/Synthese d image 3D/OpenGL/build/_deps/glm-build/glm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
