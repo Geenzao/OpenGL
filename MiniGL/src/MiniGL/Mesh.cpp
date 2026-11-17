@@ -147,4 +147,33 @@ namespace mgl
 
         return {vertices, indices};
     }
+
+    Mesh Mesh::GenerateCube(float h)
+    {
+        // 6 faces, 4 vertices each (own normal per face)
+        struct Face { glm::vec3 n, u, v; };
+        const Face faces[6] =
+        {
+            {{ 1, 0, 0}, { 0, 0,-1}, {0, 1, 0}},
+            {{-1, 0, 0}, { 0, 0, 1}, {0, 1, 0}},
+            {{ 0, 1, 0}, { 1, 0, 0}, {0, 0,-1}},
+            {{ 0,-1, 0}, { 1, 0, 0}, {0, 0, 1}},
+            {{ 0, 0, 1}, { 1, 0, 0}, {0, 1, 0}},
+            {{ 0, 0,-1}, {-1, 0, 0}, {0, 1, 0}},
+        };
+
+        std::vector<VertexData> vertices;
+        std::vector<uint32_t> indices;
+        for (const auto& f : faces)
+        {
+            uint32_t base = static_cast<uint32_t>(vertices.size());
+            vertices.push_back({h * (f.n - f.u - f.v), f.n, {0.f, 0.f}});
+            vertices.push_back({h * (f.n + f.u - f.v), f.n, {1.f, 0.f}});
+            vertices.push_back({h * (f.n + f.u + f.v), f.n, {1.f, 1.f}});
+            vertices.push_back({h * (f.n - f.u + f.v), f.n, {0.f, 1.f}});
+            indices.insert(indices.end(), {base, base + 1, base + 2, base, base + 2, base + 3});
+        }
+
+        return {vertices, indices};
+    }
 } // mgl

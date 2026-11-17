@@ -88,6 +88,7 @@ public:
 
     #pragma region Static helpers
     static Mesh GeneratePlane(float halfSize);
+    static Mesh GenerateCube(float halfSize);
     #pragma endregion Static helpers
 };
 } // mgl
