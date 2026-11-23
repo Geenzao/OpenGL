@@ -38,10 +38,12 @@ protected:
         mgl::gpu::GLUtils::Clear();
 
         s.Bind();
+        s.UniformData("lightDirection", glm::vec3(1.f, -1.f, -1.f));
+        s.UniformData("lightColor", glm::vec3(1.f, 0.f, 0.f));
         s.UniformData("viewMatrix", m_camera->View());
         s.UniformData("projectionMatrix", m_camera->Projection());
         s.UniformData("useTexture", 0);
-        for(size_t i = 0; i < m_meshes.size(); i++)
+        for (size_t i = 0; i < m_meshes.size(); i++)
         {
             s.UniformData("modelMatrix", m_models[i]);
             s.UniformData("baseColor", m_colors[i]);
